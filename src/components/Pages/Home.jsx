@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import Header from '../Common/Header';
 import Services from './Services'
 import Projects from './Projects'
+import Clients from '../Common/Clients'
+import Footer from '../Common/Footer'
+import BlogSnipet from '../Common/BlogForHomePage'
 class Home extends Component{
 
     render(){
@@ -13,13 +16,16 @@ class Home extends Component{
                   subtitle="Result Oriented MEARN Stack Developer"
                   buttonText="Let's Talk"
                   link='/contact'
-                  showButton={true}git
+                  showButton={true}
                   image='/img/header-bg.jpg'
                 />
 
             
-           <Services />
+            <Services />
             <Projects />
+            <Clients />
+            <BlogSnipet />
+            <Footer/>
           
           </div>
         )
