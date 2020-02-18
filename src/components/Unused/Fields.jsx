@@ -13,10 +13,8 @@ class Field extends Component{
                     placeholder={this.props.placeholder} 
                     required="required" 
                     data-validation-required-message="Please enter your name."
-                    name={this.props.name}
-                    onChange ={this.props.onChange}
-                    onBlur ={this.props.onBlur}
-                    
+                    value={this.props.value}
+                    onChange={e=>this.props.onChange(e)}
                 />
                 :
                 <textarea 
@@ -25,24 +23,13 @@ class Field extends Component{
                     placeholder={this.props.placeholder}
                     required="required" 
                     data-validation-required-message="Please enter a message."
-                    name={this.props.name}
-                    onChange ={this.props.onChange}
-                    onBlur ={this.props.onBlur}
-                    
+                    value={this.props.value}
+                    onChange={e=> this.props.onChange(e)}
                 />
 
             }
                                     
-             <p className="help-block text-danger" >
-                 {
-                     this.props.errors && this.props.touched
-                     &&
-                     <span>
-                         This Field is required
-                     </span>
-                 }
-                 
-             </p>
+             <p className="help-block text-danger" />
             </div>
         )
     }

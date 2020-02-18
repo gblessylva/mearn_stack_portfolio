@@ -20,7 +20,19 @@ const fields = {
    
 
 class Contact extends Component{
+    constructor(props){
+        super(props);
 
+        this.state={
+            name:'',
+            email:'',
+            phone:'',
+            message:''
+        }
+    }
+    submitForm=(e)=>{
+        alert('Form Sent')
+    }
     render(){
         return(
             <div>
@@ -43,23 +55,18 @@ class Contact extends Component{
                     </div>
                     <div className="row">
                         <div className="col-lg-12">
-                        <form id="contactForm" name="sentMessage" noValidate="noValidate" 
-                            onSubmit={this.props.handleSubmit}>
+                        <form id="contactForm" name="sentMessage" noValidate="noValidate">
                             <div className="row">
                                 {fields.sections.map((section, sectionIndex) =>{
-                                    // console.log('rendering ', sectionIndex, 'with', section )
+                                    console.log('rendering ', sectionIndex, 'with', section )
                                    return(
                                        
                                        <div className="col-md-6">
                                            {section.map((field, i) =>{
                                                return <Fields {...field} 
                                                key={i}
-                                                value={this.props.values[field.name]}
-                                                name={field.name}
-                                                onChange ={this.props.handleChange}
-                                                onBlur={this.props.handleBlur}
-                                                touched={this.props.touched[field.name]}
-                                                errors={this.props.errors[field.name]}
+                                                    value={this.state[field.name]}
+                                                    onChange={e=>this.setState({[field.name]: e.target.value})}
                                                />
                                               
                                            })}
@@ -73,7 +80,7 @@ class Contact extends Component{
                                     id="sendMessageButton" 
                                     className="btn btn-primary btn-xl text-uppercase" 
                                     type="submit"
-                                    
+                                    onClick={e=>this.submitForm()}
                                     >Send Message</button>
                             </div>
                             </div>
@@ -88,25 +95,4 @@ class Contact extends Component{
     }
 
 }
-export default withFormik({
-    mapPropsToValues :()=>({
-        name: '',
-        email: '',
-        phone: '',
-        message: ''
-    }),
-    validate: values =>{
-        const errors= {};
-        Object.keys(values).map(v =>{
-            if(!values[v]){
-                errors[v]='Required Field'
-            }
-        })
-        return errors
-
-    },
-    handleSubmit: (values, {setSubmit}) =>{
-        console.log('Values', JSON.stringify(values))
-        alert("you've submitted the form, here is what you filled", JSON.stringify(values))
-    }
-})(Contact);
+export default Contact;
