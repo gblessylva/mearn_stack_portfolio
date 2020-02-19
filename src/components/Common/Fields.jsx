@@ -38,7 +38,7 @@ class Field extends Component{
                      this.props.errors && this.props.touched
                      &&
                      <span>
-                         This Field is required
+                         {this.props.errors}
                      </span>
                  }
                  

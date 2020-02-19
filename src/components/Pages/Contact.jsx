@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import Header from '../Common/Header'
 import {withFormik} from 'formik'
 import Fields from '../Common/Fields'
-
-
+import * as Yup from 'yup'
+const phnoeValidate= /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 const fields = {
         sections: [
             [
@@ -95,16 +95,32 @@ export default withFormik({
         phone: '',
         message: ''
     }),
-    validate: values =>{
-        const errors= {};
-        Object.keys(values).map(v =>{
-            if(!values[v]){
-                errors[v]='Required Field'
-            }
-        })
-        return errors
+    // validate: values =>{
+    //     const errors= {};
+    //     Object.keys(values).map(v =>{
+    //         if(!values[v]){
+    //             errors[v]='Required Field'
+    //         }
+    //     })
+    //     return errors
 
-    },
+    // },
+
+    validationSchema: Yup.object().shape({
+        name: Yup.string().min(3, 'Name must be Longer than three').required('Name cannot be empty'),
+        email: Yup.string().email('Email is not valid').required('Email cannot be empty'),
+        phone: Yup.string('Phone number must be numbers only')
+            .matches(phnoeValidate, 'Phone number must be digits')
+            .required('Phone number cannot be empty')
+            .min(10, 'Number not complete')
+            .max(15, 'Number is too long'),
+            
+        message: Yup.string()
+        .required('Message Cannot be empty')
+        .min(5, 'Your message should be long enough')
+        .max(100000, 'Your message is to long, send an email to gblessylva@gmail.com')
+    }),
+
     handleSubmit: (values, {setSubmit}) =>{
         console.log('Values', JSON.stringify(values))
         alert("you've submitted the form, here is what you filled", JSON.stringify(values))
