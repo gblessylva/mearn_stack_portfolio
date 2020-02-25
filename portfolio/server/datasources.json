@@ -1,6 +1,17 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
+  "mongodb": {
+    "host": "localhost",
+    "port": 27107,
+    "database": "users",
+    "password": "",
+    "name": "mongodb",
+    "user": "",
+    "useNewUrlParser": true,
+    "connector": "mongodb",
+    "url": "mongodb://localhost:27017/"
+  },
+  "cloudb": {
+    "connector": "mongodb",
+    "url": "mongodb+srv://admin:adminpassword@cluster0-3ezuq.mongodb.net/test?retryWrites=true&w=majority"
   }
 }

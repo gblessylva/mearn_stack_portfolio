@@ -34,16 +34,30 @@ boot(app, __dirname, function(err) {
 });
 
 console.log(Object.keys(app.models));
+app.models.user.find((err, result) => {
 
-app.models.User.afterRemote('create', (ctx, user, next)=>{
+  if (result.length === 0) {
+    const user = {
+      email: 'gblessylva@gmail.com',
+      password: 'password',
+      username: 'sly',
+    };
+    app.models.user.create(user, (err, result) =>{
+      console.log('New user ', result, ' Created')
+    });
+  }
+});
+
+app.models.user.afterRemote('create', (ctx, user, next)=>{
   console.log('user name is', user);
   app.models.Profile.create({
     userName: user.username,
     createdAt: new Date(),
     userId: user.id,
+    lastName: user.lastName,
   },
     (err, result)=>{
-      if (!err && result){
+      if (!err && result) {
         console.log('new user', result);
       } else {
         console.log(err);
