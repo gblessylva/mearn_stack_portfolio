@@ -3,8 +3,6 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-'use strict';
-
 const loopback = require('loopback');
 const boot = require('loopback-boot');
 
@@ -35,7 +33,6 @@ boot(app, __dirname, function(err) {
 
 console.log(Object.keys(app.models));
 app.models.user.find((err, result) => {
-
   if (result.length === 0) {
     const user = {
       email: 'gblessylva@gmail.com',
@@ -43,7 +40,7 @@ app.models.user.find((err, result) => {
       username: 'sly',
     };
     app.models.user.create(user, (err, result) =>{
-      console.log('New user ', result, ' Created')
+      console.log('New user ', result, ' Created');
     });
   }
 });
@@ -67,3 +64,33 @@ app.models.user.afterRemote('create', (ctx, user, next)=>{
 
   );
 });
+
+app.models.Role.find({where: {name: 'admin'}}, (err, role)=>{
+  if (!err && role) {
+    if (role.length === 0) {
+      app.models.Role.create(
+        {name: 'admin'},
+      (err2, result)=>{
+        console.log(result);
+        if (!err2 && result)        {
+          app.models.user.findOne(
+            (userErr, user) =>{
+              if (!userErr && user) {
+                result.principals.create(
+                  {
+                    principalType: app.models.RoleMapping.USER,
+                    principalId: user.id,
+                  }, (err3, principal)=>{
+                  console.log('Prinscipal Created', err3, principal);
+                }
+                );
+              }
+            }
+          );
+        }
+      }
+      );
+    }
+  }
+});
+
