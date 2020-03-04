@@ -65,6 +65,7 @@ app.models.user.afterRemote('create', (ctx, user, next)=>{
   );
 });
 
+// Creat6e admin Role
 app.models.Role.find({where: {name: 'admin'}}, (err, role)=>{
   if (!err && role) {
     if (role.length === 0) {
@@ -94,3 +95,16 @@ app.models.Role.find({where: {name: 'admin'}}, (err, role)=>{
   }
 });
 
+// Create editor role
+
+app.models.Role.find({where: {name: 'editor'}}, (error, roles)=>{
+  if (!error && roles) {
+    if (roles.length === 0) {
+      app.models.Role.create({
+        name: 'editor',
+      }, (creationErr, creationResult) =>{
+        console.log(creationErr, creationResult);
+      });
+    }
+  }
+});

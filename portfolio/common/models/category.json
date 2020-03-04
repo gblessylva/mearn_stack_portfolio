@@ -1,5 +1,5 @@
 {
-  "name": "Posts",
+  "name": "Category",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -7,34 +7,26 @@
   },
   "properties": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "default": "Category"
+    },
+    "createdAt": {
+      "type": "date"
     },
     "slug": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "content": {
+    "desc": {
       "type": "string"
-    },
-    "created_at": {
-      "type": "date"
     }
   },
   "validations": [],
   "relations": {
-    "user": {
-      "type": "belongsTo",
-      "model": "user",
-      "foreign": "userId"
-    },
-    "Profile": {
-      "type": "belongsTo",
-      "model": "Profile",
-      "foreign": "profileId"
-    }, 
-    "Category" :{
-      "type":"belongsTo",
-      "model":"category",
-      "foreignKey": "categoryId"
+    "Posts": {
+      "type": "hasMany",
+      "model": "Post"
     }
   },
   "acls": [
