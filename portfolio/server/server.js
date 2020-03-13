@@ -53,14 +53,14 @@ app.models.user.afterRemote('create', (ctx, user, next)=>{
     userId: user.id,
     lastName: user.lastName,
   },
-    (err, result)=>{
-      if (!err && result) {
-        console.log('new user', result);
-      } else {
-        console.log(err);
-      }
-      next();
+  (err, result)=>{
+    if (!err && result) {
+      console.log('new user', result);
+    } else {
+      console.log(err);
     }
+    next();
+  }
 
   );
 });
@@ -71,25 +71,25 @@ app.models.Role.find({where: {name: 'admin'}}, (err, role)=>{
     if (role.length === 0) {
       app.models.Role.create(
         {name: 'admin'},
-      (err2, result)=>{
-        console.log(result);
-        if (!err2 && result)        {
-          app.models.user.findOne(
-            (userErr, user) =>{
-              if (!userErr && user) {
-                result.principals.create(
-                  {
-                    principalType: app.models.RoleMapping.USER,
-                    principalId: user.id,
-                  }, (err3, principal)=>{
-                  console.log('Prinscipal Created', err3, principal);
+        (err2, result)=>{
+          console.log(result);
+          if (!err2 && result)        {
+            app.models.user.findOne(
+              (userErr, user) =>{
+                if (!userErr && user) {
+                  result.principals.create(
+                    {
+                      principalType: app.models.RoleMapping.USER,
+                      principalId: user.id,
+                    }, (err3, principal)=>{
+                      console.log('Prinscipal Created', err3, principal);
+                    }
+                  );
                 }
-                );
               }
-            }
-          );
+            );
+          }
         }
-      }
       );
     }
   }

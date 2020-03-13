@@ -47,5 +47,13 @@
   "Category": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "ImageFile": {
+    "dataSource": "fileDb",
+    "public": true
+  },
+  "ImageLinks": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }

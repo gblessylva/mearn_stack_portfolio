@@ -14,5 +14,12 @@
     "url": "mongodb+srv://admin:adminpassword@cluster0-3ezuq.mongodb.net/test?retryWrites=true&w=majority",
     "name": "cloudb",
     "connector": "mongodb"
+  },
+  "fileDb": {
+    "name": "fileDb",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./server/storage",
+    "nameConflict": "makeUnique"
   }
 }

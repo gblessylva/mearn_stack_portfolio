@@ -1,40 +1,32 @@
 {
-  "name": "Posts",
+  "name": "ImageLinks",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "title": {
-      "type": "string"
-    },
-    "slug": {
-      "type": "string"
-    },
-    "content": {
-      "type": "string"
+    "url": {
+      "type": "string",
+      "required": true,
+      "created_at": "date"
     },
     "created_at": {
-      "type": "date"
+      "type": "date",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
+    "Post": {
+      "type": "belongsTo",
+      "model":"Post",
+      "foreignKey": "postId"
+    },
     "user": {
       "type": "belongsTo",
-      "model": "user",
-      "foreign": "userId"
-    },
-    "Profile": {
-      "type": "belongsTo",
-      "model": "Profile",
-      "foreign": "profileId"
-    },
-    "Category": {
-      "type": "belongsTo",
-      "model": "category",
-      "foreignKey": "categoryId"
+      "model":"user",
+      "foreignKey": "user"
     },
     "ImageFile": {
       "type": "belongsTo",
