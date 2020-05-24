@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import {withFormik, validateYupSchema} from 'formik'
 import * as Yup from 'yup'
 import Field from '../Common/Fields'
-
+import {connect} from 'react-redux'
+import * as authActions from '../../store/actions/authActions'
 const fields =[
     {name: 'email', elementName: 'input', type: 'email', placeholder: 'Admin Email Address'},
     {name: 'password', elementName: 'input', type: 'password', placeholder: 'Admin Password'}
@@ -20,7 +21,12 @@ const fields =[
                             <h3>Admin Login</h3> 
                         </div>
                         <div className="row">
-                            <form action="" className="col-md-12" onSubmit={this.props.handleSubmit}>
+                            <form action="" className="col-md-12" onSubmit={
+                                e=>{e.preventDefault()
+                                    this.props.login(this.props.values.email, this.props.values.password)
+                                }
+
+                            }>
                                 {fields.map((f, i)=>{
                                 return(
                                     <div >
@@ -51,14 +57,31 @@ const fields =[
     }
 }
 
-export default withFormik({
+//Using Redux to map Actions
+const mapStateToProps = state =>{
+    return{
+        auth: state.auth
+    }
+}
+
+//Using Reduce to dispatch actions
+const mapDispatchToProps = dispatch =>{
+    return {
+        login: (email, pass) =>{
+            dispatch(authActions.login(email, pass))
+        }
+    }
+}
+export default connect(
+    mapStateToProps, mapDispatchToProps)(withFormik({
     mapPropsToValues: ()=>({
         email:'', password:''
     }), validationSchema: Yup.object().shape({
         email: Yup.string().email('Please enter a valid email address').required('This email field is required'),
         password: Yup.string().required('This password field is required')
-    }),
-    handleSubmit: (values, {setSubmitting})=>{
+    }), 
+    handleSubmit: (values, {setSubmitting}, login)=>{
         console.log('Login attempt', values)
+        login(values.email, values.password)
     }
-}) (Login)
+}) (Login))

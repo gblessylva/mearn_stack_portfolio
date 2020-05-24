@@ -1,64 +1,130 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PageWrapper from './components/PageWrapper'
 import Home from './components/Pages/Home';
 import About from './components/Pages/About';
-import Services from './components/Pages/Services';
+import Stack from './components/Pages/Services';
 import Projects from './components/Pages/Projects';
 import Contact from './components/Pages/Contact';
 import Blog from './components/Pages/Blog'
 import AdminWrapper from './components/AdminWrapper'
 import Login from './components/Pages/Login'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-function App() {
+import {connect} from 'react-redux'
+import Dashboard from './components/Pages/Dashboard'
+
+
+class App extends Component {
+  render(){
+
+  
   return (
     <div className="App">
+      
        <Router>
+         
          <Route
          path='/admin'
-         render={props=>(
-          <AdminWrapper>
-              <Login />
-          </AdminWrapper>
-         )}
+         render={props=>
+          {
+            return(
+            <AdminWrapper>
+              {this.props.auth.token? 
+              <Dashboard />
+              :
+                <Login />
+              } 
+            </AdminWrapper>
+            )
+          }
+          
+          }
          />
-      <PageWrapper>
        
           <Route
            exact={true}
            path="/"
-            component={Home}
+            render={props =>(
+              <PageWrapper>
+                  <Home {...props} />
+              </PageWrapper>
+              )
+            
+            
+            }
           />
 
         <Route
            exact={true}
            path="/about"
-            component={About}
+            render ={props =>(
+              <PageWrapper>
+
+                <About {...props} />
+              </PageWrapper>
+            )}
           />
 
           <Route
            exact={true}
            path="/stack"
-            component={Services}
+           render={
+             props=>(
+               <PageWrapper>
+                 <Stack {...props}/>
+               </PageWrapper>
+             )
+           }
           />
           <Route
            exact={true}
            path="/projects"
-            component={Projects}
+           render={
+             props=>(
+               <PageWrapper>
+                 <Projects {...props}/>
+               </PageWrapper>
+             )
+           }
+
+            
           />
           <Route
            exact={true}
            path="/contact"
-            component={Contact}
+           render ={
+             props=>(
+               <PageWrapper>
+                 <Contact {...props} />
+               </PageWrapper>
+             )
+           }
           />
           <Route
            exact={true}
            path="/blog"
-            component={Blog}
+            render={
+              props=>(
+                <PageWrapper>
+                  <Blog {...props} />
+                </PageWrapper>
+              )
+            }
           />
-      </PageWrapper>
+
       </Router>
     </div>
   );
 }
+}
 
-export default App;
+const mapStateToProps =state=>{
+  return{
+    auth:state.auth
+  } 
+}
+const mapDispatchToProps = state =>{
+  return{
+
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps) (App);

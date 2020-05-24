@@ -1,18 +1,18 @@
 var models = require('./server').models;
 
-//Creates new instance
+// Creates new instance
 // models.Profile.create({name: 'Sylva'}, (err, profile) =>{
 //   console.log('data?', err, profile);
 // }
-// )
+// );
 
-//modifies an instance
+// modifies an instance
 
 // models.Profile.upsert({id: "5e5519190369ec157c452795", name: "Sylva"}, (err, profile) =>{
 //   console.log("data?", err, profile)
 // })
 
-//Searches and creates if none is found
+// Searches and creates if none is found
 
 // models.Profile.findOrCreate({name:"sylva2"}, (err, profile) =>{
 //   if (err) {
@@ -21,9 +21,9 @@ var models = require('./server').models;
 //     profile.email = 'newmail@sly.com';
 //     profile.save((eu, updated) =>{
 //       console.log('updated', updated);
-//     }) 
+//     })
 //   }
-  
+
 // })
 
 // const movieStars = [
@@ -46,7 +46,7 @@ var models = require('./server').models;
 //     console.log('star name', err, created)
 //   })
 // })
-// const newUser =[ 
+// const newUser =[
 //   {name: 'demola', email: 'demola@gmail.com'},
 //   {name: 'ola', email: 'demola@gail.com'},
 //   {name: 'mola', email: 'demola@mail.com'},
@@ -59,12 +59,12 @@ var models = require('./server').models;
 
 const filter = {
   where: {
-    email: {like: 'ola'}
+    email: {like: 'ola'},
   },
   order: 'id ASC',
   limit: 10,
-}
-//Find models
+};
+// Find models
 // models.Profile.find(filter, (err, found) => {
 //   console.log('found', err, found)
 //   if(found) {
@@ -72,13 +72,13 @@ const filter = {
 //   }
 // }
 // )
-//delete users
-//Delete by ID
+// delete users
+// Delete by ID
 // models.Profile.destroyById('5e562f4ef50fab076c904e1b', (err, destroyed) =>{
 //   console.log('deleted', destroyed)
 // })
 
-//delete All using filter
+// delete All using filter
 
 // models.Profile.destroyAll(filter.where, (err, destroyed) =>{
 //   console.log('deleted all', destroyed)
