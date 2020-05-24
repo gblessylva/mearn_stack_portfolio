@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
-//import Header from '../Common/Header'
+import nodeIcon from '../../static/node-js.png'
+import logo from '../../logo.svg';
+import mongoIcon from "../../static/mongo.png"
+import reactNativeIcon from "../../static/react-native.png"
 import SingleService from '../Common/SingleService';
 
 
 const services =
         [
-            {title: 'Ecommerce', description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, esse.', icon : 'fa-shopping-cart'},
-            {title: 'Responsive Design', description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, esse.', icon : 'fa-laptop'},
-            {title: 'Web Security', description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, esse.', icon : 'fa-lock'},
+            {title: 'Node JS', description:'I use Node JS to create server side applications', src: nodeIcon, alt: 'node icon'},
+            {title: 'React JS', description:'My major and favorite frontend framework', src : logo, alt: "logo"},
+            {title: 'MongoDB', description:'When it comes to servers, I prefer Mongo DB', src : mongoIcon, alt : 'Mongodb Icon'},
+            {title: 'React Native', description:'I use React Native to build both IOS and Android applications', src: reactNativeIcon, alt: 'react Native icon'}
 
         ]
    
@@ -31,8 +35,8 @@ class Services extends Component{
                     <div className="container">
                     <div className="row">
                         <div className="col-lg-12 text-center">
-                        <h2 className="section-heading text-uppercase">Services</h2>
-                        <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                        <h2 className="section-heading text-uppercase">My Stack</h2>
+                        <h3 className="section-subheading text-muted">Here is my technology stack</h3>
                         </div>
                     </div>
                     <div className="row text-center">
