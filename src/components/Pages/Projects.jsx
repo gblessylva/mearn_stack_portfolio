@@ -1,13 +1,18 @@
 import React, {Component} from 'react'
 import ProjectItems from '../Common/ProjectsSingle'
 import chatApp from '../../static/chatapp.png'
+import ejoya from '../../static/ejoya.co.png'
+import rentch from '../../static/rentch.PNG'
+import zenith from '../../static/zc.PNG'
+import dp from '../../static/dp.PNG'
+import pmp from '../../static/pmp/player.png'
 const projects =[
-    {title: 'Chatta', subtitle:'Android App', img: chatApp, link: '/chatta-app' },
-    {title: 'Explore', subtitle:'Graphic Design', img:'img/portfolio/02-thumbnail.jpg' },
-    {title: 'Finish', subtitle:'Identity', img:'img/portfolio/03-thumbnail.jpg' },
-    {title: 'Lines', subtitle:'Branding', img:'img/portfolio/04-thumbnail.jpg' },
-    {title: 'South West', subtitle:'Website Design', img:'img/portfolio/05-thumbnail.jpg' },
-    {title: 'Window', subtitle:'Photography', img:'img/portfolio/06-thumbnail.jpg' }
+    {title: 'Chatta', subtitle:'Android App', img: chatApp, link: '/projects/chatta-app' },
+    {title: 'PMP', subtitle:'Android Music Player', img:pmp, link: 'projects/pmp'  },
+    {title: 'Zenith Copy', subtitle:'Web Development', img: zenith, link: '/projects/zenithcopy' },
+    {title: 'DailyPosts.co.uk', subtitle:'Web Development', img: dp, link: '/projects/dailyposts' },
+    {title: 'Ejoya.co', subtitle:'Front End development', img: ejoya, link: '/projects/ejoya'  },
+    {title: 'Rentch.ng', subtitle:'Front End Development', img:rentch, link: '/projects/rentch' }
 ]
 class Projects extends Component{
 

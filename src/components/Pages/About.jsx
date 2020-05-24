@@ -90,7 +90,7 @@ class About extends Component{
                                     </div>
                                     <div className="timeline-body">
                                     <p className="text-muted">
-                                    Design and Develop visually appealing websites/ Mobile Applications  for clients with great functionality
+                                     Design and Develop visually appealing websites/ Mobile Applications  for clients with great functionality
 
                                     </p>
                                     </div>

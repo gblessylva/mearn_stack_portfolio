@@ -23,7 +23,7 @@ class Home extends Component{
             
             <Services />
             <Projects />
-            <Clients />
+            {/* <Clients /> */}
             <BlogSnipet />
             <Footer/>
           

@@ -26,8 +26,8 @@ class Blog extends Component{
                     <div className="container">
                     <div className="row">
                         <div className="col-lg-12 text-center">
-                        <h2 className="section-heading text-uppercase" >From Our Blog</h2>
-                        <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                        <h2 className="section-heading text-uppercase" >My Thoughts</h2>
+                        <h3 className="section-subheading text-muted">A few things I write about. Still under construction</h3>
                         </div>
                     </div>
                     
