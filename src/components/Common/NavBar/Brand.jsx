@@ -1,16 +1,24 @@
 import React from 'react';
-import styled from 'styled-component';
+import {Link} from 'react-router-dom'
+import styled from 'styled-components';
 
 const Brand = ()=> {
     return(
-        
-        <h1 className="brand">
-            GBLESSYLVA
-        </h1>
+
+         <BrandH1>
+            <Link className="brand" to="/">
+                GBLESSYLVA
+            </Link>             
+        </BrandH1>
     )
 }
 export default Brand
 
-const gblessylva = styled.h1`
-    
+const BrandH1 = styled.a`
+color:white;
+padding-left:150px;
+font-size:18px;
+&:hover {
+    color: red;
+  }
 `

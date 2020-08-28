@@ -171,7 +171,8 @@ button span.efx{
 }
 
 
-
+a.brand:hover{
+color: rgb(241, 90, 34);}
 .header-button:hover .efx {
   display: block;
 }

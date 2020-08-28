@@ -1,12 +1,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import NavBar from './Common/NavBar'
+
 class PageWrapper extends Component{
 
     render(){
         return(
 
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" 
+                <NavBar />
+                
+                {/* <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" 
                     style={{background:'rgba(0, 0, 0, 0.6)'}}
                 >
                     <div className="container">
@@ -37,7 +41,7 @@ class PageWrapper extends Component{
                         </ul>
                     </div>
                     </div>
-                </nav>
+                </nav> */}
                 {this.props.children}
             </div>
         )
