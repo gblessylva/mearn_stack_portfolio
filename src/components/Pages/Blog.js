@@ -5,7 +5,7 @@ import Header from '../Common/Header';
 import image from '../assets/img/about.jpg';
 import * as SiteActions from '../../store/actions/siteActions';
 import BlogItem from '../Common/BlogItem';
-
+import '../assets/css/blog.css'
 class Blog extends Component {
     componentDidMount(){
         this.props.getPosts(0);
@@ -23,7 +23,7 @@ class Blog extends Component {
                <section className="bg-light" id="portfolio">
                     <div className="container">
                         
-                        <div className="row">
+                        <div className="main-blog-card">
                         {this.props.site.posts ?
                             this.props.site.posts.length > 0 ?
                                 this.props.site.posts.map((post, i) => {
@@ -34,8 +34,8 @@ class Blog extends Component {
                                         />
                                     )
                                 })
-                            : <h2> No Post Found </h2>
-                            : <h2> No Post Found </h2>}
+                            : null
+                            : null}
                         </div>
                         <div className="row">
                             <div className="col-md-12">

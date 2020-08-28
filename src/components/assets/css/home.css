@@ -1,0 +1,291 @@
+.header-container{
+    color:white;
+    background: black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+}
+
+.header{
+    position: relative;
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 3px 6px rgba(236, 0, 139, 0.16), 0 3px 6px rgba(241, 90, 34, 0.25);
+    z-index: 10;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+ /* .header-container span:nth-child(1){
+    width: 200px;
+    height: 30px;
+    background: linear-gradient(100.37deg, rgb(236, 0, 139) 0%, rgb(241, 90, 34) 100%);
+    display: block;
+    transform: rotate(-40deg);
+    border-radius: 20px;
+    position: absolute;
+    left: 40%;
+    top: 60px;
+    z-index: 11;
+} */
+.header-container span:nth-child(2){
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(100.37deg, rgb(236, 0, 139) 0%, rgb(241, 90, 34) 100%);
+    display: block;
+    transform: rotate(-30deg) skew(-30deg);
+    position: absolute;
+    bottom: 250px;
+    left: 40px;
+    z-index: 9;
+}
+.header-container span:nth-child(3){
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(100.37deg, rgb(236, 0, 139) 0%, rgb(241, 90, 34) 100%);
+    display: block;
+    transform: rotate(-15deg) skew(-15deg);
+    position: absolute;
+    bottom: 180px;
+    right: 60px;
+    z-index: 9;
+}
+.header-container span:nth-child(4){
+    width: 400px;
+    height: 290px;
+    background: linear-gradient(100.37deg, rgb(236, 0, 139) 0%, rgb(241, 90, 34) 100%);
+    display: block;
+    transform: rotate(-15deg) skew(-15deg);
+    position: absolute;
+    bottom: 140px;
+    right: 125px;
+    border-bottom-left-radius: 60px;
+    border-top-left-radius: 60px;
+    z-index: 12;
+}
+.header-container span:nth-child(5){
+    width: 400px;
+    height: 50px;
+    background: linear-gradient(100.37deg, rgb(236, 0, 139) 0%, rgb(241, 90, 34) 100%);
+    display: block;
+    transform: rotate(-15deg);
+    border-radius: 20px;
+    position: absolute;
+    left: 40%;
+    bottom: 60px;
+    z-index: 9;
+}
+.header-container span:nth-child(6){
+    width: 200px;
+    height: 30px;
+    background: linear-gradient(100.37deg, rgb(236, 0, 139) 0%, rgb(241, 90, 34) 100%);
+    display: block;
+    transform: rotate(-15deg);
+    border-radius: 20px;
+    position: absolute;
+    left: 60%;
+    bottom: 60px;
+    z-index: 11;
+}
+
+.svg-container{
+    width: 350px;
+    position: absolute;
+    bottom: 100px;
+    right: 200px;
+    z-index: 13;
+    animation: fadein 2s;
+animation-delay: 1s;
+animation-fill-mode: forwards;
+}
+.header .content{
+    width: 50%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+    line-height: 2;
+}
+.content h2{
+    text-align: left;
+    margin-top: 20px;
+    padding: 0 20px;
+    font-size: 40px;
+    animation: fadein 2s;
+animation-delay: 0.3s;
+animation-fill-mode: forwards;
+}
+.content h3::after{
+    content: '';
+    animation: stack 10s infinite forwards;
+    color:#F05A28;
+    font-style: normal;
+}
+
+.content h3{
+    text-align: left;
+    margin-bottom: 10px;
+    padding:  20px;
+    font-size: 25px;
+    font-style: italic;
+    animation: fadein 2s;
+animation-delay: 0.5s;
+animation-fill-mode: forwards;
+}
+.content p{
+animation: fadein 2s;
+animation-delay: 0.8s;
+margin-bottom: 10px;
+padding:  20px;
+animation-fill-mode: forwards;
+}
+.content > button{
+background: #F05A28;
+border: none;
+padding: 15px;
+border-radius: 10px;
+font-size: 18px;
+animation: fadein 2s;
+position: relative;
+animation-delay: 1s;
+color: white;
+cursor: pointer;
+overflow: hidden;
+animation-fill-mode: forwards;
+}
+button span.efx{
+  display: none;
+  background: rgba(240, 236, 236, 0.2);
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  left: -400px;
+  transform: rotate(-45deg);
+  top: 0;
+  animation: shine 1s forwards  ease-in;
+}
+
+
+
+.header-button:hover .efx {
+  display: block;
+}
+
+@keyframes shine {
+    0% {
+      left: -200px;
+    }
+    50% {
+      left: 50%;
+    }
+    100% {
+     left: 100%;
+    }
+  }
+
+@keyframes fadein {
+   0%{
+       opacity: 0;
+}
+100%{
+    opacity: 1;
+}
+}
+
+@keyframes stack {
+   0%{
+       content: 'a JavaScript Engineer';
+   }
+   20%{
+       content: 'a WodPress Developer';
+   }
+   40%{
+       content: 'a Designer';
+   }
+   60%{
+       content: 'a Technical Writer';
+   }
+   100%{
+     content: 'a JavaScript Engineer';
+   }
+}
+
+@media screen and (max-width: 1024px) {
+.svg-container {
+right: 100px;
+top: 100px;
+
+}
+.header-container span:nth-child(6){
+  display: none;
+}
+}
+
+@media screen and (max-width: 900px) {
+.svg-container {
+width: 200px;
+right: 100px;
+top: 60px;
+
+}
+.svg-container img{
+opacity: 0.3;
+}
+.header .content{
+  width: 100%;
+
+}
+.content h2{
+  margin-bottom: 0;
+  width: 40%;
+  padding-bottom: 0;
+  margin-top: 0;
+  line-height: 1.2;
+  text-align: center;
+}
+.content h3{
+  margin-bottom: 0;
+  padding-bottom: 0;
+  line-height: 1.5;
+  font-size: 19px;
+}
+span{
+  display: none;
+}
+.header-container span:nth-child(4), .header-container span:nth-child(5){
+  display: none;
+}
+
+.header-container span:nth-child(6){
+  display: none;
+}
+.content button{
+    margin-top: 0px;
+}
+.content p{
+    line-height: 1.5;
+}
+}
+
+@media screen and (max-width: 500px) {
+ .content h3{
+    font-size: 16px;
+    text-align: left;
+}
+.content h2{
+    font-size: 25px;
+}
+.content p{
+    line-height: 1.5;
+}
+.content button{
+    font-size: 14px;
+    margin-top: 0px;
+
+}
+}

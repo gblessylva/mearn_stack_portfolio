@@ -13,7 +13,7 @@ class Home extends Component{
                 <Header
                   
                   title="Sylvanus m Godbless"
-                  subtitle="Result Oriented MEARN Stack Developer"
+                  subtitle="Result Oriented MERN Stack Developer"
                   buttonText="Let's Talk"
                   link='/contact'
                   showButton={true}
@@ -32,4 +32,19 @@ class Home extends Component{
     }
 
 }
-export default Home;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

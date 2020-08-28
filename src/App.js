@@ -1,200 +1,226 @@
 import React, { Component } from 'react';
-import PageWrapper from './components/PageWrapper'
+import PageWrapper from './components/PageWrapper';
+import {BrowserRouter as Router, Route,  Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+// Pages
 import Home from './components/Pages/Home';
 import About from './components/Pages/About';
-import Stack from './components/Pages/Services';
-import Projects from './components/Pages/Projects';
 import Contact from './components/Pages/Contact';
-import Blog from './components/Pages/Blog'
-import AdminWrapper from './components/AdminWrapper'
-import Login from './components/Pages/Login'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {connect} from 'react-redux'
-import Dashboard from './components/Pages/Dashboard'
-import Ejoya from './components/Pages/projects/ejoya'
-import ZenithCopy from './components/Pages/projects/ZenithCopy'
-import DailyPosts from './components/Pages/projects/DailyPosts'
-import Rentch from './components/Pages/projects/Rentchng'
-import Chatta from './components/Pages/projects/Chatta'
-import PMP from './components/Pages/projects/PMP.jsx'
+import Login from './components/Pages/Login';
+import Blog from './components/Pages/Blog';
+import Single from './components/Pages/Single';
+import Signup from './components/Pages/Signup';
+
+// Admin Pages
+import Dashboard from './components/Pages/Admin/Dashboard';
+import Users from './components/Pages/Admin/Users';
+import Posts from './components/Pages/Admin/Posts';
+import AddPost from './components/Pages/Admin/AddPost';
+
+import AdminWrapper from './components/AdminWrapper';
+import LoginWrapper from './components/LoginWrapper';
 
 class App extends Component {
-  render(){
+  render() {
+    return (
+      <Router>
 
-  
-  return (
-    <div className="App">
-      
-       <Router>
-         
-         <Route
-         path='/admin'
-         render={props=>
-          {
-            return(
-            <AdminWrapper>
-              {this.props.auth.token? 
-              <Dashboard />
-              :
-                <Login />
-              } 
-            </AdminWrapper>
+        <Route 
+          path='/admin/users'
+          render={props => {
+            return (
+                <div>
+                {this.props.auth.token ?
+                  <AdminWrapper>
+                    <Users />
+                  </AdminWrapper>
+                : 
+                  <LoginWrapper>
+                    <Login />
+                  </LoginWrapper>
+                  
+                }
+                </div>
+              
             )
-          }
-          
-          }
-         />
-       
-          <Route
-           exact={true}
-           path="/"
-            render={props =>(
-              <PageWrapper>
-                  <Home {...props} />
-              </PageWrapper>
-              )
-            
-            
-            }
-          />
+          }}
+        />
 
         <Route
-           exact={true}
-           path="/about"
-            render ={props =>(
-              <PageWrapper>
+          path='/admin/posts/:view/:id'
+          exact={true}
+          render={props => {
+            return (
+              <div>
 
-                <About {...props} />
-              </PageWrapper>
-            )}
-          />
+                {this.props.auth.token ?
+                  <AdminWrapper>
+                    <AddPost />
+                  </AdminWrapper>
+                : 
+                  <LoginWrapper>
+                    <Login />
+                  </LoginWrapper>
+                  
+                }
+              </div>
+            )
+          }}
+        />
 
-          <Route
-           exact={true}
-           path="/stack"
-           render={
-             props=>(
-               <PageWrapper>
-                 <Stack {...props}/>
-               </PageWrapper>
-             )
-           }
-          />
-          <Route
-           exact={true}
-           path="/projects"
-           render={
-             props=>(
-               <PageWrapper>
-                 <Projects {...props}/>
-               </PageWrapper>
-             )
-           }
+        <Route
+          path='/admin/posts/:view'
+          exact={true}
+          render={props => {
+            return (
+              <div>
 
-            
-          />
-          <Route
-           exact={true}
-           path="/contact"
-           render ={
-             props=>(
-               <PageWrapper>
-                 <Contact {...props} />
-               </PageWrapper>
-             )
-           }
-          />
-          <Route
-           exact={true}
-           path="/blog"
-            render={
-              props=>(
+                {this.props.auth.token ?
+                  <AdminWrapper>
+                    <AddPost />
+                  </AdminWrapper>
+                : 
+                  <LoginWrapper>
+                    <Login />
+                  </LoginWrapper>
+                  
+                }
+              </div>
+            )
+          }}
+        />
+        <Route 
+          path='/admin/posts'
+          exact={true}
+          render={props => {
+            return (
+                <div>
+                {this.props.auth.token ?
+                  <AdminWrapper>
+                    <Posts />
+                  </AdminWrapper>
+                : 
+                  <LoginWrapper>
+                    <Login />
+                  </LoginWrapper>
+                  
+                }
+                </div>
+              
+            )
+          }}
+        />
+
+        <Route
+          exact={true}
+          path="/signup"
+          render={props => {
+            if(this.props.auth.token){
+              return (
+                <Redirect to="/" />
+              )
+            }else{
+              return (
+                <LoginWrapper>
+                    <Signup />
+                  </LoginWrapper>
+              )
+            }
+          }} />
+
+        <Route
+          exact={true}
+          path="/admin"
+          render={props => {
+            return (
+                <div>
+                {this.props.auth.token ?
+                  <AdminWrapper>
+                    <Dashboard />
+                  </AdminWrapper>
+                : 
+                  <LoginWrapper>
+                    <Login />
+                  </LoginWrapper>
+                  
+                }
+                </div>
+              
+            )
+          }}
+        />
+
+        
+          
+            <Route
+              exact={true}
+              path="/"
+              render={props => (
+                <PageWrapper>
+                  <Home {...props} />
+                </PageWrapper>
+              )}
+            />
+
+            <Route
+              path="/blog/:slug"
+              exact={true}
+              render={props => (
+                <PageWrapper>
+                  <Single {...props} />
+                </PageWrapper>
+              )}
+            />
+
+            <Route
+              path="/blog"
+              exact={true}
+              render={props => (
                 <PageWrapper>
                   <Blog {...props} />
                 </PageWrapper>
-              )
-            }
-          />
-          <Route
-           exact={true}
-           path="/projects/ejoya"
-            render={
-              props=>(
+              )}
+            />
+            <Route
+              path="/about"
+              render={props => (
                 <PageWrapper>
-                  <Ejoya {...props} />
+                  <About {...props} />
                 </PageWrapper>
-              )
-            }
-          />
-          <Route
-           exact={true}
-           path="/projects/zenithcopy"
-            render={
-              props=>(
+              )}
+              />
+            
+            <Route 
+              path="/contact"
+              render={props => (
                 <PageWrapper>
-                  <ZenithCopy {...props} />
+                  <Contact {...props} />
                 </PageWrapper>
-              )
-            }
-          />
-          <Route
-           exact={true}
-           path="/projects/dailyposts"
-            render={
-              props=>(
-                <PageWrapper>
-                  <DailyPosts {...props} />
-                </PageWrapper>
-              )
-            }
-          />
-          <Route
-           exact={true}
-           path="/projects/rentch"
-            render={
-              props=>(
-                <PageWrapper>
-                  <Rentch {...props} />
-                </PageWrapper>
-              )
-            }
-          />
-          <Route
-           exact={true}
-           path="/projects/chatta-app"
-            render={
-              props=>(
-                <PageWrapper>
-                  <Chatta {...props} />
-                </PageWrapper>
-              )
-            }
-          />
-        <Route
-           exact={true}
-           path="/projects/pmp"
-            render={
-              props=>(
-                <PageWrapper>
-                  <PMP {...props} />
-                </PageWrapper>
-              )
-            }
-          />
+              )}
+              />
+           
+          
+        
       </Router>
-    </div>
-  );
-}
+
+    );
+  }
 }
 
-const mapStateToProps =state=>{
-  return{
-    auth:state.auth
-  } 
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
 }
-const mapDispatchToProps = state =>{
-  return{
+
+const mapDispatchToProps = dispatch => {
+  return {
 
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
